@@ -16,3 +16,23 @@ after_success:
   - docker build -t paihari/multi-worker ./worker
 
 #Push the images to hub.docker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push paihari/multi-client
+  - docker push paihari/multi-nginx
+  - docker push paihari/multi-server
+  - docker push paihari/multi-worker
+
+#deploy:
+#  provider: elasticbeanstalk
+#  region: us-west-1
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: elasticbeanstalk-us-west-1-306476627547
+#  bucket_path: docker-multi
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key:
+#    secure: $AWS_SECRET_KEY
