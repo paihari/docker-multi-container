@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "paiharimulti-client",
+      "image": "paihari/multi-client",
       "hostname": "client",
       "essential": false,
       "memory": 128
